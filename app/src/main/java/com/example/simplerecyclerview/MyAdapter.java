@@ -7,11 +7,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private String[] mDataset;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder  extends RecyclerView.ViewHolder {
 
         public TextView textview;
         public MyViewHolder(View v){
@@ -33,5 +33,9 @@ public class MyAdapter {
 
     public void onBindViewHolder(MyViewHolder holder, int position){
         holder.textview.setText(mDataset[position]);
+    }
+
+    public int getItemCount(){
+        return mDataset.length;
     }
 }

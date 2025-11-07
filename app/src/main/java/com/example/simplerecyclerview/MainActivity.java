@@ -1,5 +1,7 @@
 package com.example.simplerecyclerview;
 
+import static com.example.simplerecyclerview.R.id.rvFriends;
+
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -13,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MyAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private String[] myDataset;
 
@@ -27,19 +29,19 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-            recyclerView = findViewById(R.id.rvFriends);
-            recyclerView.setHasFixedSize(true);
-            myDataset = new String[]{"Ahmad", "Rina", "Sujood", "Yamen"};
-
-            layoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(layoutManager);
-            mAdapter = new MyAdapter(myDataset);
-            recyclerView.setAdapter(mAdapter);
         });
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recyclerView = findViewById(R.id.rvFriends);
+        recyclerView.setHasFixedSize(true);
+        myDataset = new String[]{"Ahmad", "Rina", "Sujood", "Yamen"};
 
-
-
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new MyAdapter(myDataset);
+        recyclerView.setAdapter(mAdapter);
     }
 }
